@@ -1,7 +1,7 @@
 import { createAnecdote } from '../reducers/anecdoteReducer';
 import {
-  setNotificationCreation,
-  resetNotificationCreation,
+  setNotificationVote,
+  resetNotificationVote,
 } from '../reducers/notificationReducer';
 import { useDispatch } from 'react-redux';
 
@@ -13,9 +13,9 @@ const AnecdoteForm = () => {
     const content = event.target.anecdote.value;
     event.target.anecdote.value = '';
     dispatch(createAnecdote(content));
-    dispatch(setNotificationCreation(content));
+    dispatch(setNotificationVote(`new anecdote '${content}'`));
     setTimeout(() => {
-      dispatch(resetNotificationCreation());
+      dispatch(resetNotificationVote());
     }, 5000);
   };
 

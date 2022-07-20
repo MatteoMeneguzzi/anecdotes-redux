@@ -1,4 +1,4 @@
-import { voteAnecdote } from '../reducers/anecdoteReducer';
+import { updateVote, voteAnecdote } from '../reducers/anecdoteReducer';
 import {
   setNotificationVote,
   resetNotificationVote,
@@ -16,9 +16,9 @@ const AnecdoteForm = () => {
     return anecdotes.filter((item) => item.content.includes(filter.content));
   });
 
-  const vote = (id, content) => {
-    dispatch(voteAnecdote(id));
-    dispatch(setNotificationVote(content));
+  const vote = (anecdote, content) => {
+    dispatch(updateVote(anecdote));
+    dispatch(setNotificationVote(`you voted '${content}'`));
     setTimeout(() => {
       dispatch(resetNotificationVote());
     }, 5000);
@@ -31,7 +31,7 @@ const AnecdoteForm = () => {
           <div>{anecdote.content}</div>
           <div>
             has {anecdote.votes}
-            <button onClick={() => vote(anecdote.id, anecdote.content)}>
+            <button onClick={() => vote(anecdote, anecdote.content)}>
               vote
             </button>
           </div>
