@@ -1,8 +1,5 @@
-import { updateVote, voteAnecdote } from '../reducers/anecdoteReducer';
-import {
-  setNotificationVote,
-  resetNotificationVote,
-} from '../reducers/notificationReducer';
+import { updateVote } from '../reducers/anecdoteReducer';
+import { showNotificationWithTimeout } from '../reducers/notificationReducer';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -18,10 +15,12 @@ const AnecdoteForm = () => {
 
   const vote = (anecdote, content) => {
     dispatch(updateVote(anecdote));
-    dispatch(setNotificationVote(`you voted '${content}'`));
-    setTimeout(() => {
-      dispatch(resetNotificationVote());
-    }, 5000);
+    dispatch(
+      showNotificationWithTimeout({
+        content: `you voted '${content}'`,
+        timer: 5000,
+      })
+    );
   };
 
   return (
