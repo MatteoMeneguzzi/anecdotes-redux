@@ -11,13 +11,10 @@ const AnecdoteForm = () => {
 
   const anecdotes = useSelector(({ anecdotes, filter }) => {
     if (filter.content === '') {
-      console.log(anecdotes);
       return anecdotes;
     }
     return anecdotes.filter((item) => item.content.includes(filter.content));
   });
-
-  console.log(anecdotes);
 
   const vote = (id, content) => {
     dispatch(voteAnecdote(id));
