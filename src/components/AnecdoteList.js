@@ -3,7 +3,7 @@ import { showNotificationWithTimeout } from '../reducers/notificationReducer';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-const AnecdoteForm = () => {
+const AnecdoteList = () => {
   const dispatch = useDispatch();
 
   const anecdotes = useSelector(({ anecdotes, filter }) => {
@@ -40,4 +40,4 @@ const AnecdoteForm = () => {
   );
 };
 
-export default AnecdoteForm;
+export default AnecdoteList;
